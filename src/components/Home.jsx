@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 import todoService from '../api/todoService';
-import TodoList from './Todo/TodoList';
-import TodoDetails from './Todo/TodoDetails';
-import TodoCreate from './Todo/TodoCreate';
+import TodoList from './todo/TodoList';
+import TodoDetails from './todo/TodoDetails';
+import TodoCreate from './todo/TodoCreate';
 
 class Home extends Component {
 	state = {
@@ -47,7 +47,6 @@ class Home extends Component {
 	};
 
 	render() {
-		//const {loading,showCreate,showDetails,selectedId}=this.state
 		return this.state.loading ? (
 			<div>
 				<Loader
