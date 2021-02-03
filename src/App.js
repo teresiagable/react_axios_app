@@ -5,7 +5,8 @@ function App() {
 	return (
 		<div className='App'>
 			<header className='App-header'>
-				--------------------------- The Todo app ---------------------------
+				--------------------------- The Axios app
+				---------------------------
 			</header>
 			<TodoHome />
 		</div>

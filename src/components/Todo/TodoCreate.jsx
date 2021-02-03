@@ -5,7 +5,7 @@ const TodoCreate = (props) => {
 	const [todoItem, setTodoItem] = useState({
 		title: '',
 		description: '',
-		deadline: '2020-01-02T07:00:00',
+		deadline: '',
 		done: false,
 		assignee: '',
 	});
@@ -18,7 +18,7 @@ const TodoCreate = (props) => {
 		const fetchData = async () => {
 			let theUsers = await todoService.getAllUsers();
 			setUsers({ users: theUsers, isLoading: false });
-			console.log('component TodoCreate rerendered');
+			//console.log('component TodoCreate rerendered'); // console.log might cause a second render sometimes
 		};
 		fetchData();
 	}, []);
@@ -36,6 +36,8 @@ const TodoCreate = (props) => {
 		//console.log('event', event.target);
 	};
 
+	//the date was a bit tricky to update in the state and reload to the field
+	//this might not be the best solution
 	function getTDateString(dateString) {
 		let date = new Date(dateString);
 		return date.toLocaleDateString() + 'T' + date.toLocaleTimeString();
@@ -87,7 +89,7 @@ const TodoCreate = (props) => {
 									name='deadline'
 									value={new Date(
 										todoItem.deadline
-									).toLocaleDateString()}
+									).toLocaleDateString()} //time is ignored for now
 									onChange={handleDeadLineChange}
 								></input>
 							</td>
@@ -95,15 +97,11 @@ const TodoCreate = (props) => {
 						<tr>
 							<td>Assignee</td>
 							<td>
-								<select
-									name='assignee'
-									// value={todoUsers.users[1].id}
-									onChange={handleChange}
-								>
+								<select name='assignee' onChange={handleChange}>
 									{todoUsers.users.map((user, index) => (
 										<option
 											key={user.id}
-											// selected={index === 1} ///OMG this is ugly
+											// selected={index === 1} ///OMG this is ugly, and also not working
 											value={user.id}
 										>
 											{user.firstName + ' ' + user.lastName}

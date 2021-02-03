@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import Loader from 'react-loader-spinner';
+import MyLoader from './utils/MyLoader';
 import todoService from '../api/todoService';
-import TodoList from './Todo/TodoList';
-import TodoDetails from './Todo/TodoDetails';
-import TodoCreate from './Todo/TodoCreate';
+import TodoList from './todo/TodoList';
+import TodoDetails from './todo/TodoDetails';
+import TodoCreate from './todo/TodoCreate';
 
 class Home extends Component {
 	state = {
@@ -47,16 +46,9 @@ class Home extends Component {
 	};
 
 	render() {
-		//const {loading,showCreate,showDetails,selectedId}=this.state
 		return this.state.loading ? (
 			<div>
-				<Loader
-					style={{ 'text-align': 'center' }}
-					type='Watch'
-					color='#d33682'
-					height={300}
-					width={300}
-				/>
+				<MyLoader />
 			</div>
 		) : (
 			<div className='flex-container'>
@@ -93,3 +85,39 @@ class Home extends Component {
 }
 
 export default Home;
+
+// return this.state.loading ? (
+// 	<div>
+// 		<MyLoader />
+// 	</div>
+// ) : (
+// 	<div className='flex-container'>
+// 		<div className='col'>
+// 			<TodoList
+// 				todolist={this.state.todos}
+// 				todoClick={this.openDetails}
+// 			/>
+// 			<input
+// 				type='button'
+// 				className='btn btn-danger btn-m'
+// 				value='Add something to do'
+// 				onClick={this.openCreate}
+// 			/>
+// 		</div>
+// 		{this.state.showDetails ? (
+// 			<div className='col '>
+// 				<TodoDetails id={this.state.selectedId} />
+// 			</div>
+// 		) : this.state.showCreate ? (
+// 			<div className='col '>
+// 				<TodoCreate onSubmit={this.saveNewTodo} />
+// 			</div>
+// 		) : (
+// 			<div className='col'>
+// 				<h3 className='text-success'>
+// 					Willkommen! And bienvenue! Welcome!
+// 				</h3>
+// 			</div>
+// 		)}
+// 	</div>
+// );
